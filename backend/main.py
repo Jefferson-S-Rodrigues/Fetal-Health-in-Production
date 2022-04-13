@@ -1,18 +1,31 @@
 import uvicorn
 from fastapi import FastAPI
 from pydantic import ValidationError
+from fastapi.middleware.cors import CORSMiddleware
 
 from util import jsonc
 
-from models import Gestante
+from models import Pregnancy
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:4200",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get('/gestante/{cpf}')
 async def getGestante(cpf: str):
     try:
-        gestante = Gestante(cpf=cpf, nome='Fulana de Tal')
+        gestante = Pregnancy(cpf=cpf, name='Fulana de Tal')
         return jsonc(gestante)
     except ValidationError as e:
         error = {

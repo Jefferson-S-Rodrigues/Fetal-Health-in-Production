@@ -1,0 +1,39 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+@import '../../styles.scss';
+
+$color-config:    mat.get-color-config($hpeml-front-theme);
+$primary-palette: map.get($color-config, 'primary');
+$accent-palette:  map.get($color-config, 'accent');
+$warn-palette:    map.get($color-config, 'warn');
+$is-dark-theme:   map.get($color-config, 'is-dark');
+
+.card-exam {
+    width: 400px;
+}
+
+.main-div {
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.col {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.preg-name {
+    font-weight: bold;
+    color: mat.get-color-from-palette($accent-palette);
+}

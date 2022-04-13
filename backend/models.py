@@ -1,9 +1,9 @@
 from pydantic import BaseModel, ValidationError, validator
 
 
-class Gestante(BaseModel):
+class Pregnancy(BaseModel):
     cpf: str
-    nome: str
+    name: str
 
     @validator('cpf')
     def cpf_in_11_digits(cls, v):
@@ -11,7 +11,7 @@ class Gestante(BaseModel):
             return v
         raise ValidationError('CPF inválido')
 
-    @validator('nome')
+    @validator('name')
     def nome_valid(cls, v):
         if len(v) <= 3:
             raise ValidationError('Nome inválido')

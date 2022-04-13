@@ -1,1 +1,24 @@
-<p>exam works!</p>
+<div class="main-div">
+    <form [formGroup]="examForm" novalidate (ngSubmit)="onSubmit(); CPF.focus()">
+    <mat-card class="card-exam">
+        <div class="row">
+            <div class="col">
+                <mat-form-field appearance="fill" class="full-width">
+                    <mat-label>CPF: </mat-label>
+                    <input matInput #CPF [(ngModel)]="txtCPF" class="full-form" maxlength="11"
+                    placeholder="CPF da gestante" type="text"  formControlName="CPF"
+                        autofocus required>
+                    <mat-hint align="end">{{CPF.value.length}}</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                    <label>Gestante: <span class="preg-name">{{ pregname }}</span></label>
+            </div>
+        </div>
+
+    </mat-card>
+</form>
+
+</div>
