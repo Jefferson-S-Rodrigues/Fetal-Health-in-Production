@@ -23,10 +23,10 @@ app.add_middleware(
 
 
 @app.get('/gestante/{cpf}')
-async def getGestante(cpf: str):
+async def getPregnancy(cpf: str):
     try:
-        gestante = Pregnancy(cpf=cpf, name='Fulana de Tal')
-        return jsonc(gestante)
+        pregnancy = Pregnancy(cpf=cpf, name='Fulana de Tal')
+        return jsonc(pregnancy)
     except ValidationError as e:
         error = {
             "message": str(e)
