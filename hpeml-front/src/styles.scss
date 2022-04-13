@@ -1,0 +1,30 @@
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$hpeml-front-primary: mat.define-palette(mat.$light-blue-palette);
+$hpeml-front-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$hpeml-front-warn: mat.define-palette(mat.$red-palette);
+
+$hpeml-front-theme: mat.define-light-theme((
+  color: (
+    primary: $hpeml-front-primary,
+    accent: $hpeml-front-accent,
+    warn: $hpeml-front-warn,
+  )
+));
+
+@include mat.all-component-themes($hpeml-front-theme);
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  background-image: url('assets/images/cartoonback.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -1,0 +1,22 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.main-title {
+    display: table;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.btlink {
+    padding-right: 10px;
+}
+
+.bgimg {
+    background-image: url('../assets/images/cartoonback.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
