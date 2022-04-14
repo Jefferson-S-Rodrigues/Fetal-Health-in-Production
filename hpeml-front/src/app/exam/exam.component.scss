@@ -1,19 +1,28 @@
 @use 'sass:map';
-@use '@angular/material' as mat;
+@use '@angular/material'as mat;
 @import '../../styles.scss';
 
-$color-config:    mat.get-color-config($hpeml-front-theme);
+$color-config: mat.get-color-config($hpeml-front-theme);
 $primary-palette: map.get($color-config, 'primary');
-$accent-palette:  map.get($color-config, 'accent');
-$warn-palette:    map.get($color-config, 'warn');
-$is-dark-theme:   map.get($color-config, 'is-dark');
+$accent-palette: map.get($color-config, 'accent');
+$warn-palette: map.get($color-config, 'warn');
+$is-dark-theme: map.get($color-config, 'is-dark');
 
 .card-exam {
     width: 400px;
 }
 
+.card-exam-content {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.bt-submit {
+    min-width: 50%;
+}
+
 .main-div {
-    height: 50vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,4 +45,9 @@ $is-dark-theme:   map.get($color-config, 'is-dark');
 .preg-name {
     font-weight: bold;
     color: mat.get-color-from-palette($accent-palette);
+}
+
+.sp-nota {
+    font-size: 10px;
+    color: mat.get-color-from-palette($primary-palette, 700);
 }

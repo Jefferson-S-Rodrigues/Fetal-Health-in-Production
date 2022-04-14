@@ -1,4 +1,5 @@
 export interface Ctgexam {
+    id?: number;
     cpf: string; // pregnancy's CPF
     ts?: Date; // Timestamp of exam
     baseline_value: number; //FHR baseline (beats per minute)
@@ -22,5 +23,5 @@ export interface Ctgexam {
     histogram_median: number; //Histogram median
     histogram_variance: number; //Histogram variance
     histogram_tendency: number; //Histogram tendency
-
+    fetal_health?: number; //Target
 }

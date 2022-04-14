@@ -10,12 +10,14 @@ import { ExamComponent } from './exam/exam.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { InputNumberComponent } from './shared/components/fields/input-number/input-number.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ExamComponent
+    ExamComponent,
+    InputNumberComponent
   ],
   imports: [
     BrowserModule,

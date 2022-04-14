@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from util import jsonc
 
-from models import Pregnancy
+from models import Pregnancy, CTGExam
 
 app = FastAPI()
 
@@ -23,10 +23,23 @@ app.add_middleware(
 
 
 @app.get('/gestante/{cpf}')
-async def getPregnancy(cpf: str):
+async def pregnancy(cpf: str):
     try:
-        pregnancy = Pregnancy(cpf=cpf, name='Fulana de Tal')
+        pregnancy = Pregnancy(cpf=cpf, name='Fulana de Tal da Silva')
         return jsonc(pregnancy)
+    except ValidationError as e:
+        error = {
+            "message": str(e)
+        }
+        return jsonc(error, cod=400)
+
+
+@app.post('/ctgexam')
+async def exam(ctg: CTGExam):
+    try:
+        ctg.id = 1
+        ctg.fetal_health = 1
+        return jsonc(ctg)
     except ValidationError as e:
         error = {
             "message": str(e)
