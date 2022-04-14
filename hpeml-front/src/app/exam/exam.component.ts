@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { CtgExamService } from '../core/ctg-exam.service';
+import { MatDialog } from '@angular/material/dialog';
 import { PregnancyService } from '../core/pregnancy.service';
+import { ResultDialogComponent } from '../shared/components/dialogs/result-dialog/result-dialog.component';
 import { Ctgexam } from '../shared/models/ctgexam';
 import { Pregnancy } from '../shared/models/pregnancy';
 
@@ -68,7 +69,7 @@ export class ExamComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private pregnancyService: PregnancyService,
-    private ctgexamService: CtgExamService
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -92,12 +93,21 @@ export class ExamComponent implements OnInit {
 
     const ctgexam = this.examForm.getRawValue() as Ctgexam;
 
-    this.ctgexamService.saveCTGExam(ctgexam).subscribe(result => {
-      console.log(result.id);
+    this.openDialog(ctgexam);
+
+  }
+
+  openDialog(ctgexam: Ctgexam): void {
+    const dialogRef = this.dialog.open(ResultDialogComponent, {
+      width: '250px',
+      data: ctgexam,
     });
 
-    this.examForm.reset();
-
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.examForm.reset();
+      }
+    });
   }
 
 }

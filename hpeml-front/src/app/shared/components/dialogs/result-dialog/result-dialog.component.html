@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Resultado de Exame</h1>
+<div mat-dialog-content>
+  <p>CPF: {{ exam.cpf }}</p>
+    <mat-label *ngIf="!exam.fetal_health">Processando resultado...</mat-label>
+    <mat-label *ngIf="exam.fetal_health == 1">Resultado Normal, gestação segue bem</mat-label>
+    <mat-label *ngIf="exam.fetal_health == 2">Situação suspeita, favor investigar</mat-label>
+    <mat-label *ngIf="exam.fetal_health == 3">Patologia confirmada, internar a gestante</mat-label>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Fechar</button>
+  <button mat-button [mat-dialog-close]="exam.fetal_health" cdkFocusInitial>Ok</button>
+</div>
