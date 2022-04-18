@@ -129,7 +129,4 @@ dmypy.json
 .pyre/
 
 # Project folders
-vagrantfiles/
 .idea
-
-modelfds/

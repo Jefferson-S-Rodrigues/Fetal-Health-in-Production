@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ctgexam } from '../shared/models/ctgexam';
 
-const url = 'http://localhost:8000/ctgexam';
+const url = 'http://localhost/api/ctgexam';
 
 @Injectable({
   providedIn: 'root'

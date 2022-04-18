@@ -1,25 +1,16 @@
+import uuid
+from datetime import datetime
+
 import uvicorn
 from fastapi import FastAPI
 from pydantic import ValidationError
-from fastapi.middleware.cors import CORSMiddleware
 
 from util import jsonc
+from pubsubkafka import PubSubKafka as PSK, get_result
 
 from models import Pregnancy, CTGExam
 
 app = FastAPI()
-
-origins = [
-    "http://localhost:4200",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 @app.get('/gestante/{cpf}')
@@ -36,9 +27,15 @@ async def pregnancy(cpf: str):
 
 @app.post('/ctgexam')
 async def exam(ctg: CTGExam):
+    psk = PSK()
+    session = str(uuid.uuid4())
+    tsexam = str(datetime.now())
     try:
+        psk.send_services(ctgexam=ctg, session=session, tsexam=tsexam)
         ctg.id = 1
-        ctg.fetal_health = 1
+        result = get_result(session=session)['result']
+        ctg.fetal_health = result['result']
+        print(f'FINAL: {ctg}')
         return jsonc(ctg)
     except ValidationError as e:
         error = {

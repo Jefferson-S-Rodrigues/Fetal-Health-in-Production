@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pregnancy } from '../shared/models/pregnancy';
 
-const url = 'http://localhost:8000/gestante';
+const url = 'http://localhost/api/gestante';
 
 @Injectable({
   providedIn: 'root'
