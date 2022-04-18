@@ -1,0 +1,42 @@
+<div class="main-div">
+    <form [formGroup]="examForm" novalidate (ngSubmit)="onSubmit(); CPF.focus()">
+        <mat-card class="card-exam">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field appearance="fill" class="full-width">
+                        <mat-label>CPF: </mat-label>
+                        <input matInput #CPF [(ngModel)]="txtCPF" class="full-form" maxlength="11"
+                            placeholder="CPF da gestante" type="text" formControlName="cpf" [formGroup]="examForm"
+                            autofocus required>
+                        <mat-hint align="end">{{CPF.value.length}}</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label>Gestante: <span class="preg-name">{{ pregname }}</span></label>
+                </div>
+            </div>
+            <mat-divider inset></mat-divider>
+            <mat-card-content class="card-exam-content">
+                <div *ngFor="let fexam of fieldsExam">
+                    <div class="row">
+                        <div class="col">
+                            <app-input-number title="{{ fexam.title }}" controlName="{{ fexam.controlName}}"
+                                [formGroup]="examForm" [step]="fexam.step" [minim]="fexam.min" [maxim]="fexam.max">
+                            </app-input-number>
+                        </div>
+                        <div class="col">
+                            <span class="sp-nota">{{ fexam.description }}</span>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button class="bt-submit" color="accent" type="submit">Enviar</button>
+            </mat-card-actions>
+
+        </mat-card>
+    </form>
+
+</div>
