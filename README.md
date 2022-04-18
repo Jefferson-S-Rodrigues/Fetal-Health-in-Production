@@ -4,6 +4,20 @@ Trabalho da disciplina de DevOps do núcleo de Engenharia de Machine Learning do
 ### Tarefa
 Adicionar um modelo de ML em produção.
 
+## Execução
+
+1. build do angular em produção. Exemplo:
+
+```console
+ng build --prod
+```
+
+2. Enviar para o docker:
+
+```console
+docker-compose up -d
+```
+
 ## Arquitetura
 
 ![](diagrams/arquitetura.png)
