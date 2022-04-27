@@ -32,7 +32,7 @@ docker-compose up -d
 
 ### Services
 
-É uma aplicação em Python, um microsserviço que lida com o controle dos dados e armazenamento (o armazenamento não foi implementado ainda).
+É uma aplicação em Python, um microsserviço que lida com o controle dos dados e armazenamento.
 
 ### AutoExam
 
@@ -60,7 +60,11 @@ FastAPI foi escolhida por, entre as 3 frameworks restful mais conhecidas do Pyth
 
 É o serviço de mensageria da aplicação, responsável, também, por fazer o balanceamento de carga, os serviços com maior demanda de processamento poderão ser duplicados e sua carga dividida.
 
+### MySQL
 
+O MySQL foi escolhido por ser um SGBD consolidado e bem documentado, tornando fácil sua inclusão no projeto.
+
+Em função do uso do SQLAlchemy, qualquer SGBD relacional suportado pelo SQLAlchemy pode ser usado. Para NoSQL, é necessário o uso da interface do Python com o banco de dados escolhido.
 
 ## Fontes
 ### Fonte de Dados

@@ -63,6 +63,9 @@ services:
       - .:/codeservices
     depends_on:
       - broker
+      - dbmysqlexams
+    env_file:
+      - .env
       
   pythonautoexam:
     container_name: pythonautoexam
@@ -75,3 +78,19 @@ services:
     depends_on:
       - broker
 
+  dbmysqlexams:
+    container_name: dbmysqlexams
+    image: mysql:8.0.28
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ctg
+      MYSQL_USER: ctguser
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./dbexam/initdb.sql:/docker-entrypoint-initdb.d/init.sql
