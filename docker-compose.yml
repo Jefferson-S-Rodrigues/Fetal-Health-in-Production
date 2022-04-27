@@ -92,7 +92,5 @@ services:
       - .env
     ports:
       - "3306:3306"
-    expose:
-      - "3306/tcp"
     volumes:
       - ./dbexam/initdb.sql:/docker-entrypoint-initdb.d/init.sql
