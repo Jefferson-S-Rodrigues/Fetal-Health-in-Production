@@ -6,13 +6,15 @@ Adicionar um modelo de ML em produção.
 
 ## Execução
 
-1. build do angular em produção. Exemplo:
+1. Criar o arquivo `.env` a partir do arquivo `.env-template`
+
+2. build do angular em produção. Exemplo:
 
 ```console
-ng build --prod
+ng build --configuration=production
 ```
 
-2. Enviar para o docker:
+3. Enviar para o docker:
 
 ```console
 docker-compose up -d
