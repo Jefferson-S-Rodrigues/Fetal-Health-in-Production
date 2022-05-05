@@ -6,14 +6,14 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - backend
 
   broker:
     image: confluentinc/cp-kafka:7.0.1
     container_name: broker
     ports:
       - "9092:9092"
-    depends_on:
-      - zookeeper
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
@@ -24,6 +24,8 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
     expose:
       - "9092/tcp"
+    networks:
+      - backend
 
   angularnginx:
     container_name: angularnginx
@@ -31,12 +33,12 @@ services:
         dockerfile: ./hpeml-front/Dockerfile
         context: .
     image: nginx
-    depends_on:
-      - pythonbackendff
     ports:
         - "80:80"
     expose: 
         - "80/tcp"
+    networks:
+      - frontend
 
   pythonbackendff:
     container_name: pythonbackendff
@@ -44,14 +46,15 @@ services:
         dockerfile: ./backendff/Dockerfile
         context: .
     command: python main.py
-    depends_on:
-      - angularnginx
     volumes:
       - .:/codebackendff
     ports:
       - "8000:8000"
     depends_on:
       - broker
+    networks:
+      - frontend
+      - backend
       
   pythonservices:
     container_name: pythonservices
@@ -61,11 +64,10 @@ services:
     command: python main.py
     volumes:
       - .:/codeservices
-    depends_on:
-      - broker
-      - dbmysqlexams
     env_file:
       - .env
+    networks:
+      - backend
       
   pythonautoexam:
     container_name: pythonautoexam
@@ -75,8 +77,8 @@ services:
     command: python main.py
     volumes:
       - .:/codeautoexam
-    depends_on:
-      - broker
+    networks:
+      - backend
 
   dbmysqlexams:
     container_name: dbmysqlexams
@@ -94,3 +96,13 @@ services:
       - "3306:3306"
     volumes:
       - ./dbexam/initdb.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend
+
+networks:
+  frontend:
+    external: false
+    name: frontend
+  backend:
+    external: false
+    name: backend

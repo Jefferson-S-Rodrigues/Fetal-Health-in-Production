@@ -68,6 +68,8 @@ O MySQL foi escolhido por ser um SGBD consolidado e bem documentado, tornando f�
 
 Em função do uso do SQLAlchemy, qualquer SGBD relacional suportado pelo SQLAlchemy pode ser usado. Para NoSQL, é necessário o uso da interface do Python com o banco de dados escolhido.
 
+O MySQL também foi escolhido para permitir o uso do SQLAlchemy e estudá-lo.
+
 ## Fontes
 ### Fonte de Dados
 <https://www.kaggle.com/datasets/andrewmvd/fetal-health-classification>
