@@ -83,6 +83,8 @@ services:
   dbmysqlexams:
     container_name: dbmysqlexams
     image: mysql:8.0.28
+    volumes:
+      - ./dbexam/initdb.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -94,8 +96,6 @@ services:
       - .env
     ports:
       - "3306:3306"
-    volumes:
-      - ./dbexam/initdb.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
 
