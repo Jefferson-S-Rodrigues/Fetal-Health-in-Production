@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { InputNumberComponent } from './shared/components/fields/input-number/input-number.component';
 import { ResultDialogComponent } from './shared/components/dialogs/result-dialog/result-dialog.component';
+import { ListExamComponent } from './list-exam/list-exam.component';
+import { CpfPipe } from './shared/pipes/cpf.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ResultDialogComponent } from './shared/components/dialogs/result-dialog
     HomeComponent,
     ExamComponent,
     InputNumberComponent,
-    ResultDialogComponent
+    ResultDialogComponent,
+    ListExamComponent,
+    CpfPipe
   ],
   imports: [
     BrowserModule,

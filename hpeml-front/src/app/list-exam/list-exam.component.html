@@ -1,0 +1,42 @@
+<div class="table-exam-content">
+
+    <mat-form-field appearance="standard">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. 123.456.789-00" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="cpf">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF </th>
+                <td mat-cell *matCellDef="let row"> {{row.cpf | cpf}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome da Gestante </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}}% </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tsexam">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Data do Exame </th>
+                <td mat-cell *matCellDef="let row"> {{row.tsexam | date: 'dd/MM/yyyy HH:mm'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="result">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Resultado </th>
+                <td mat-cell *matCellDef="let row"> {{row.result}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Nenhum dado com o filtro "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]" aria-label="Selecione o número de exames"></mat-paginator>
+    </div>
+
+</div>
