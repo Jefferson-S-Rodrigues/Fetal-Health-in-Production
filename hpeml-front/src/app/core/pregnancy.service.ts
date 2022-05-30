@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Pregnancy } from '../shared/models/pregnancy';
-
-const url = 'http://localhost/api/gestante';
+import { ApiConfigService } from './api-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PregnancyService {
+export class PregnancyService extends ApiConfigService {
 
-  constructor(private http: HttpClient) { }
+  url: string = `${this.apiUrl}/gestante`;
+
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   pregnancyName(cpf: string): Observable<Pregnancy> {
-    return this.http.get<Pregnancy>([url, cpf].join('/'));
+    return this.http.get<Pregnancy>([this.url, cpf].join('/'));
   }
 }

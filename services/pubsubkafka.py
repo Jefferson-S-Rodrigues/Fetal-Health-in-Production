@@ -33,8 +33,11 @@ class PubSubKafka:
     def send_reply(self, ctgexam, result):
         event = {
             'session': ctgexam['session'],
-            'cpf': ctgexam['cpf'],
             'result': result
         }
+        if ctgexam["flagcur"] == "realize_exam":
+            event['cpf'] = ctgexam['cpf']
+        elif ctgexam["flagcur"] == "results":
+            pass
 
         self.producer.send(f'{ctgexam["session"]}-servicesresult', event)

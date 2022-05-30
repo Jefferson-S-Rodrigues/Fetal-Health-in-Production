@@ -21,3 +21,31 @@ def save(ctgexam: CTGExamModel):
     with Session.begin() as session:
         session.add(ctgexam)
         print(f'Save: {ctgexam}')
+
+
+def get_all():
+    with Session.begin() as session:
+        results = session.query(CTGExamModel).order_by(CTGExamModel.tsexam.desc()).limit(1000).all()
+        response = []
+        for r in results:
+            response.append({
+                "cpf": getattr(r, 'cpf'),
+                "name": "Fulana de Tal",
+                "tsexam": str(getattr(r, 'tsexam')),
+                "result": getattr(r, 'fetalhealth')
+            })
+        return response
+
+
+def get_by_cpf(cpf):
+    with Session.begin() as session:
+        results = session.query(CTGExamModel).filter_by(cpf=cpf).order_by(CTGExamModel.tsexam.desc()).limit(1000)
+        response = []
+        for r in results:
+            response.append({
+                "cpf": getattr(r, 'cpf'),
+                "name": "Fulana de Tal",
+                "tsexam": str(getattr(r, 'tsexam')),
+                "result": getattr(r, 'fetalhealth')
+            })
+        return response

@@ -8,6 +8,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table'
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatDividerModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   exports: [
     MatToolbarModule,
@@ -32,6 +36,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatDividerModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatTableModule
   ]
 })
 export class MaterialModule { }
