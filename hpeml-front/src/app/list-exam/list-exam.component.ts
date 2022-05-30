@@ -21,9 +21,10 @@ export class ListExamComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private ctgExamService: CtgExamService) {
-    this.ctgExamService.getAllExams().subscribe((examlist: Examlist[]) => this.exams = examlist);
-
-    this.dataSource = new MatTableDataSource(this.exams);
+    this.ctgExamService.getAllExams().subscribe((examlist: Examlist[]) => {
+      this.exams = examlist;
+      this.dataSource = new MatTableDataSource(this.exams);
+    });
   }
 
   ngAfterViewInit() {

@@ -21,8 +21,13 @@ class PubSubKafka:
     producer = KafkaProducer(bootstrap_servers=addr_broker,
                              value_serializer=lambda v: dumps(v).encode('utf-8'))
 
-    def send_services(self, ctgexam, session, tsexam):
-        exam = ctgexam.dict()
-        exam['session'] = session
-        exam['tsexam'] = tsexam
+    def send_services(self, flag, ctgdata, session, tsexam=None):
+        exam = {'flagcur': flag, 'session': session}
+        if flag == "realize_exam":
+            exam.update(ctgdata.dict())
+            exam['tsexam'] = tsexam
+        elif flag == "results":
+            cpf = ctgdata
+            if len(cpf) > 0:
+                exam["cpf"] = cpf
         self.producer.send(self.topic_cons, exam)
